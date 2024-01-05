@@ -6,11 +6,12 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:49:09 by mito              #+#    #+#             */
-/*   Updated: 2024/01/04 15:25:12 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/05 13:42:36 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft/libft.h"
 
 static void append_node(t_stack_node **stack, int n)
 {
@@ -24,14 +25,16 @@ static void append_node(t_stack_node **stack, int n)
 		return ;
 	node->next = NULL;
 	node->nbr = n;
-	if (!(*stack))
+	if (!(*stack)) //stackはa、aはさっきNULLにしたよね！だから最初はここに来る
 	{
+
 		*stack = node;
 		node->prev = NULL;
 	}
-	else
+	else //２回目のループ以降、aはもうNULLじゃないからここに来る
 	{
-		last_node = find_last(*stack);
+		last_node = find_last(*stack); 
+		//↑最後に繋げたいから１番最後のやつを見つける（縦に考えたら１番上だよね？）
 		last_node->next = node;
 		node->prev = last_node;
 	}
@@ -39,12 +42,15 @@ static void append_node(t_stack_node **stack, int n)
 
 void	init_stack_a(t_stack_node **a, char **argv)
 {
+
+	//I need to add error handlings: duplicated nums, overflow, syntax error
 	long	n;
 	int		i;
 
 	i = 0;
 	while (argv[i])
 	{
+		n = ft_atoi(argv[i]); // argv は charとして扱われるから数字に変えないと
 		append_node(a, (int)n);
 		i++;
 	}

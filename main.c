@@ -6,11 +6,12 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:53:35 by mito              #+#    #+#             */
-/*   Updated: 2024/01/04 14:46:46 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/05 13:43:57 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft/libft.h"
 #include <stdio.h> // I put this lib for printf, test purpose
 #include <stdlib.h> // I put this lib for malloc, test purpose
 
@@ -162,10 +163,10 @@ char	**ft_split(char const *s, char c)
 
 int main(int argc, char **argv)
 {
-	//s_stack_node	*a;
-	//s_stack_node	*b;
+	t_stack_node	*a; //sじゃなくてtだよね？
+	//t_stack_node	*b; //sじゃなくてtだよね？
 
-	//a = NULL;
+	a = NULL;
 	//b = NULL;
 	if(argc == 1 || (argc == 2 && !argv[1][0]))
 	   return (1);
@@ -179,5 +180,6 @@ int main(int argc, char **argv)
         i++;
     }
     */
+	init_stack_a(&a, argv + 1);
 }
 
