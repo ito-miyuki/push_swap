@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:23:26 by mito              #+#    #+#             */
-/*   Updated: 2024/01/05 13:46:37 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/06 15:32:22 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_stack_node
 	int		index;
 	int 	push_cost;
 	bool	above_median;
-	bool	cheapesit;
+	bool	cheapest;
 	struct	s_stack_node *target_node;
 	struct	s_stack_node *next;
 	struct	s_stack_node *prev;

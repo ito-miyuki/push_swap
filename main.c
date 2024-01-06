@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:53:35 by mito              #+#    #+#             */
-/*   Updated: 2024/01/05 13:43:57 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/06 16:50:13 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,11 +163,11 @@ char	**ft_split(char const *s, char c)
 
 int main(int argc, char **argv)
 {
-	t_stack_node	*a; //sじゃなくてtだよね？
-	//t_stack_node	*b; //sじゃなくてtだよね？
+	t_stack_node	*a; 
+	t_stack_node	*b;
 
 	a = NULL;
-	//b = NULL;
+	b = NULL;
 	if(argc == 1 || (argc == 2 && !argv[1][0]))
 	   return (1);
 	else if (argc == 2) //argvが２ってことは、数字が文字列で渡されたってこと
@@ -181,5 +181,16 @@ int main(int argc, char **argv)
     }
     */
 	init_stack_a(&a, argv + 1);
+	if (!stack_sorted(a)) //もうすでに順番通りか確認
+	{
+		if (stack_len(a) == 2) //もし二つの数字しかないならただswapする
+			sa(&a, false);
+		else if (stack_len(a) == 3)
+			sort_three(&a); // not implemented yet
+		else
+			sort_stacks(&a, &b); // not implemented yet
+	}
+	// free
+	return (0);
 }
 

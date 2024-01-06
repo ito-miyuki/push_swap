@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:53:59 by mito              #+#    #+#             */
-/*   Updated: 2024/01/05 17:26:57 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/06 16:08:15 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,5 @@ void	pb(t_stack_node **a, t_stack_node **b, bool print)
 		printf("pb\n"); //replace it with ft_printf!!!!
 		//ft_printf("pb\n");
 }
-
-
 
 
