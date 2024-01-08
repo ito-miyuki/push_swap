@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:53:35 by mito              #+#    #+#             */
-/*   Updated: 2024/01/06 16:50:13 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/08 11:56:33 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,9 +186,9 @@ int main(int argc, char **argv)
 		if (stack_len(a) == 2) //もし二つの数字しかないならただswapする
 			sa(&a, false);
 		else if (stack_len(a) == 3)
-			sort_three(&a); // not implemented yet
+			sort_three(&a);
 		else
-			sort_stacks(&a, &b); // not implemented yet
+			sort_stacks(&a, &b); //ここでTurjk algoを使う
 	}
 	// free
 	return (0);

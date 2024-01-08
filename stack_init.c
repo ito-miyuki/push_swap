@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 16:14:24 by mito              #+#    #+#             */
-/*   Updated: 2024/01/06 16:42:24 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/08 08:11:34 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static void	append_node(t_stack_node **stack, int n)
 
 void	init_stack_a(t_stack_node **a, char **argv)
 {
-	//I need to add error handlings: duplicated nums, overflow, syntax error
 	long	n;
 	int		i;
 
@@ -49,7 +48,9 @@ void	init_stack_a(t_stack_node **a, char **argv)
 	while (argv[i])
 	{
 		n = ft_atoi(argv[i]); // argv は charとして扱われるから数字に変えないと
+		//I need to add error handlings: duplicated nums, overflow, syntax error
 		append_node(a, (int)n);
+		// if there's no error
 		i++;
 	}
 }
