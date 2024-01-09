@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:23:26 by mito              #+#    #+#             */
-/*   Updated: 2024/01/06 15:32:22 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/09 17:31:35 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ typedef struct s_stack_node
 	struct	s_stack_node *prev;
 }	t_stack_node;
 
-void	init_stack_a(t_stack_node **a, char **argv);
+void			init_stack_a(t_stack_node **a, char **argv);
+t_stack_node	*find_last(t_stack_node *stack);
+void	set_cheapest(t_stack_node *stack);
 
 #endif
 
