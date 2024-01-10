@@ -6,12 +6,36 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:47:41 by mito              #+#    #+#             */
-/*   Updated: 2024/01/06 16:07:31 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/10 17:13:26 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h> // delete it
 
+static void	swap(t_stack_node **head)
+{
+	t_stack_node *first;
+	t_stack_node *second;
+	
+	if (!*head || !(*head)->next) //リストの先頭がNULLか次がない場合
+		return ; //何もしないで終わる
+
+	first = *head;
+	second = (*head)->next;
+	
+	first->next = second->next;
+	first->prev = second;
+	second->prev = NULL;
+	second->next = first;
+
+	if (first->next)
+		first->next->prev = first;
+	
+	*head = second;
+}
+
+/*
 static void	swap(t_stack_node **head)
 {
 	if (!*head || !(*head)->next) //リストの先頭がNULLか次がない場合
@@ -24,6 +48,7 @@ static void	swap(t_stack_node **head)
 	(*head)->next = (*head)->prev; // 新しい先頭ノードの next ポインタを旧先頭ノードに設定
 	(*head)->prev = NULL; // 新しい先頭ノードの prevを NULL に設定
 }
+*/
 
 void	sa(t_stack_node **a, bool print)
 {
@@ -38,6 +63,7 @@ void	sb(t_stack_node **b, bool print)
 	swap(b);
 	if(!print)
 		printf("sb\n"); // replace it with ft_printf!!!!
+		//ft_printf("sb\n");
 }
 
 void	ss(t_stack_node **a, t_stack_node *b, bool print)
@@ -46,78 +72,45 @@ void	ss(t_stack_node **a, t_stack_node *b, bool print)
 	swap(b);
 	if (!print)
 		printf("ss\n");
+		// replace it with ft_printf!!!!
+		//ft_printf("ss\n");
 }
 //////////////////////////////////////////
-//for testing
+// FOR TESTING, DELETE IT
 
-#include <stdbool.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-t_stack_node	*find_last(t_stack_node *stack)
+void	ftt_lstiter(t_stack_node *lst)
 {
-	if(!stack)
-		return (NULL);
-	while (stack->next)
-		stack = stack->next;
-	return (stack);
-}
-
-static void append_node(t_stack_node **stack, int n)
-{
-	t_stack_node	*node;
-	t_stack_node	*last_node;
-
-	if (!stack)
-		return ;
-	node = malloc(sizeof(t_stack_node));
-	if (!node)
-		return ;
-	node->next = NULL;
-	node->nbr = n;
-	if (!(*stack)) //stackはa、aはさっきNULLにしたよね！だから最初はここに来る
+	//if (!lst || !f)
+	//	return ;
+	while (lst)
 	{
-
-		*stack = node;
-		node->prev = NULL;
-	}
-	else //２回目のループ以降、aはもうNULLじゃないからここに来る
-	{
-		last_node = find_last(*stack); 
-		//↑最後に繋げたいから１番最後のやつを見つける（縦に考えたら１番上だよね？）
-		last_node->next = node;
-		node->prev = last_node;
+		//f(lst->target_node);
+		printf("%d\n", lst->nbr);
+		lst = lst->next;
 	}
 }
 
 int main()
 {
-    t_stack_node *temp = NULL;
-    t_stack_node **a = &temp;
+	t_stack_node *list;
+	t_stack_node first;
+	t_stack_node second;
+	t_stack_node third;
 
-    append_node(a, 5);
-    append_node(a, 8);
-    append_node(a, 9);
+	first.nbr = 1;
+	second.nbr = 2;
+	third.nbr = 3;
 
-    printf("Before swap:\n");
-    t_stack_node *current = *a;
-    while (current != NULL) {
-        printf("%d ", current->nbr);
-        current = current->next;
-    }
-    printf("\n\n");
+	third.next = NULL;
+	first.next = &second;
+	second.next = &third;
 
-    swap(a);
+	list = &first;
 
-    printf("After swap:\n");
-    current = *a;
-    while (current != NULL) {
-        printf("%d ", current->nbr);
-        current = current->next;
-    }
-    printf("\n");
-
-    // メモリ解放などの後処理
-
-    return 0;
+	printf("↓BEFORE↓\n");
+    ftt_lstiter(list);
+    printf("↓AFTER↓\n");
+	sa(&list, true);
+    ftt_lstiter(list);
+    return (0);
 }

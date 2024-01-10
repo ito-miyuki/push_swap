@@ -6,11 +6,23 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:27:43 by mito              #+#    #+#             */
-/*   Updated: 2024/01/05 18:15:04 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/10 15:02:17 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h> // delete it!!
+
+//delete this functions
+t_stack_node	*find_last(t_stack_node *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
+}
+//////////////
 
 static void	rotate(t_stack_node **stack)
 {
@@ -50,3 +62,36 @@ void	rr(t_stack_node **a,t_stack_node **b, bool print)
 		printf("rr\n"); //replace it with ft_printf!!!!
 		// ft_printf("rr\n");
 }
+
+// for testing, delete it before submitting
+void	ftt_lstiter(t_stack_node *lst)
+{
+	//if (!lst || !f)
+	//	return ;
+	while (lst)
+	{
+		//f(lst->target_node);
+		printf("%d\n", lst->nbr);
+		lst = lst->next;
+	}
+}
+int main()
+{
+	t_stack_node    *lst;
+    t_stack_node    first;
+    t_stack_node    second;
+
+    first.nbr = 1;
+    second.nbr = 2;
+    second.next = NULL;
+    first.next = &second;
+    lst = &first;
+
+    printf("↓before rotate↓\n");
+    ftt_lstiter(lst);
+	ra(&lst, false);
+    printf("↓after rotate↓\n");
+    ftt_lstiter(lst);
+    return (0);
+}
+

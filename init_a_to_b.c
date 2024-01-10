@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:24:04 by mito              #+#    #+#             */
-/*   Updated: 2024/01/09 17:34:12 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/10 13:57:07 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	set_target_a(t_stack_node *a, t_stack_node *b) // aのターゲッ�
 
 	while(a) //aにノードがある間
 	{
-		best_match_index = LONG_MIN;
+		best_match_index = LONG_MIN; //これがデフォルト
 		current_b = b;
 		while (current_b)
 		{
