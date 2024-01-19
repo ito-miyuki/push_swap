@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:53:35 by mito              #+#    #+#             */
-/*   Updated: 2024/01/08 11:56:33 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/19 16:36:35 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,17 +159,51 @@ char	**ft_split(char const *s, char c)
 	return (result);
 }
 
+// // FOR TESTING, ftt_lstiter
+void	ftt_lstiter(t_stack_node *lst)
+{
+	//if (!lst || !f)
+	//	return ;
+	while (lst)
+	{
+		//f(lst->target_node);
+		printf("%d\n", lst->nbr);
+		lst = lst->next;
+	}
+}
 // これより上はテストのためだから必要ない
 
 int main(int argc, char **argv)
-{
+{	
+	// argc = 7;
+
+	// argv = malloc((7 + 1) * sizeof(char *));
+	// argv[0] = "push_swap";
+	// argv[1] = "4";
+	// argv[2] = "3";
+	// argv[3] = "2";
+	// argv[4] = "1";
+	// argv[5] = "5";
+	// argv[6] = "6";
+	// argv[7] = NULL;
+
 	t_stack_node	*a; 
 	t_stack_node	*b;
 
 	a = NULL;
 	b = NULL;
-	if(argc == 1 || (argc == 2 && !argv[1][0]))
-	   return (1);
+
+	// b->
+
+	if (argc == 1 || (argc == 2 && !argv[1][0])) //数字がなかったら
+		return (1);
+	// (validate(argv + 1) == false)
+	// 	return (0);
+	// initialize list a and list b
+	// throw a and b to sorting function
+	// --> all sorted a now is sorted and b now is empty
+	
+	// cleanup both a and b
 	else if (argc == 2) //argvが２ってことは、数字が文字列で渡されたってこと
 		argv = ft_split(argv[1], ' ');	//だからsplitする
     /* delet it it's a test if it's splitting correctly
@@ -180,16 +214,48 @@ int main(int argc, char **argv)
         i++;
     }
     */
-	init_stack_a(&a, argv + 1);
+//    init_stacks(&a, &b, argv + 1);
+//    sort_stacks(&a, &b);
+	init_stack_a(&a, argv + 1); //a.outをスキップする
 	if (!stack_sorted(a)) //もうすでに順番通りか確認
 	{
 		if (stack_len(a) == 2) //もし二つの数字しかないならただswapする
-			sa(&a, false);
+			{
+				printf("-inside a condition: stack_len(a) == 2\n");
+				sa(&a, false);
+			}
 		else if (stack_len(a) == 3)
+		{
+			printf("-inside a condition: stack_len(a) == 3\n");
 			sort_three(&a);
+		}
 		else
-			sort_stacks(&a, &b); //ここでTurjk algoを使う
+		{
+			// b = (t_stack_node *)malloc(sizeof(t_stack_node));
+			// b = new_stack_node();
+			// new_stack_node() {
+			// 	t_stack_node *new_node;
+			// 	new_node = (t_stack_node *)malloc(sizeof(t_stack_node));
+			// 	if (new_node != NULL) {
+			// 		new_node->next = NULL;
+			// 		new_node->prev = NULL;
+			// 		new_node->target_node = NULL;
+			// 		new_node->above_median = 0;
+			// 		new_node->cheapest = 0;
+			// 		new_node->index = 0;
+			// 		new_node->nbr = 0;						
+			// 	}
+			// 	return (new_node);
+			// }
+			printf("-start sorting algo\n");
+			printf("-a: %p\n-b: %p\n", a, b); //この時点でbがもうNULLだ
+			sort_stacks(&a, &b);
+		}
 	}
+	else //delete it
+		printf("-number were sorted already\n"); //delete it
+	printf("-sorted number\n");
+	ftt_lstiter(a); //delete this
 	// free
 	return (0);
 }

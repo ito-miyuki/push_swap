@@ -6,22 +6,23 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:22:29 by mito              #+#    #+#             */
-/*   Updated: 2024/01/10 16:47:22 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/17 16:03:16 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
+
 //delete this functions
-t_stack_node	*find_last(t_stack_node *stack)
-{
-	if (!stack)
-		return (NULL);
-	while (stack->next)
-		stack = stack->next;
-	return (stack);
-}
+// t_stack_node	*find_last(t_stack_node *stack)
+// {
+// 	if (!stack)
+// 		return (NULL);
+// 	while (stack->next)
+// 		stack = stack->next;
+// 	return (stack);
+// }
 /////////////////////
 
 static void	rev_rotate(t_stack_node **stack)
@@ -61,6 +62,7 @@ void	rrr(t_stack_node **a, t_stack_node **b, bool print)
         //ft_printf("rrb\n");
 }
 
+/*
 // FOR TESTING, DELETE IT
 void	ftt_lstiter(t_stack_node *lst)
 {
@@ -79,25 +81,60 @@ int main()
     t_stack_node    first;
     t_stack_node    second;
 	t_stack_node	third;
+	t_stack_node	fourth;
 
 
     first.nbr = 1;
     second.nbr = 2;
 	third.nbr = 3;
+	fourth.nbr = 4;
 
 	first.prev = NULL;
     first.next = &second;
     second.prev = &first;
     second.next = &third;
     third.prev = &second;
-    third.next = NULL;
+	third.next = &fourth;
+	fourth.prev = &third;
+    fourth.next = NULL;
 	
 	lst = &first;
+
+	
+	t_stack_node    *lst2;
+    t_stack_node    first2;
+    t_stack_node    second2;
+	t_stack_node	third2;
+	t_stack_node	fourth2;
+
+    first2.nbr = 1;
+    second2.nbr = 2;
+	third2.nbr = 3;
+	fourth2.nbr = 4;
+
+	first2.prev = NULL;
+    first2.next = &second2;
+    second2.prev = &first2;
+    second2.next = &third2;
+    third2.prev = &second2;
+	third2.next = &fourth2;
+	fourth2.prev = &third2;
+    fourth2.next = NULL;
+	
+	lst2 = &first2;
 	
     printf("↓before rotate↓\n");
-    ftt_lstiter(lst);
-    printf("↓after rotate↓\n");
-	rra(&lst, false);
-    ftt_lstiter(lst);
+	printf("list1\n");
+    ftt_lstiter(lst2);
+	//printf("list2\n");
+	//ftt_lstiter(lst2);
+	printf("↓after rotate↓\n");
+	rrb(&lst2, false);
+	printf("list1\n");
+    ftt_lstiter(lst2);
+	//printf("list2\n");
+	//ftt_lstiter(lst2);
     return (0);
 }
+
+*/

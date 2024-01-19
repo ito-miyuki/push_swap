@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:47:41 by mito              #+#    #+#             */
-/*   Updated: 2024/01/10 17:13:26 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/17 16:04:44 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@ static void	swap(t_stack_node **head)
 {
 	t_stack_node *first;
 	t_stack_node *second;
-	
+	//リストの中身が一つしかないときは？
 	if (!*head || !(*head)->next) //リストの先頭がNULLか次がない場合
 		return ; //何もしないで終わる
-
-	first = *head;
-	second = (*head)->next;
+	first = *head; //firstがリストの最初を指す
+	second = (*head)->next; //secondがその次をさす
 	
-	first->next = second->next;
-	first->prev = second;
-	second->prev = NULL;
-	second->next = first;
+	// 1, 2, 3というリストがあったとして、1がfirst、2がsecond
+	first->next = second->next; //1の次が3になるようにする
+	first->prev = second; //1の前が2になるようにする
+	second->prev = NULL; //２の前がNULL これで２が先頭になる
+	second->next = first; //２の次が１になるようにする
 
-	if (first->next)
-		first->next->prev = first;
+	if (first->next) //もし１の次がヌルじゃなかったら
+		first->next->prev = first; //
 	
 	*head = second;
 }
@@ -66,7 +66,7 @@ void	sb(t_stack_node **b, bool print)
 		//ft_printf("sb\n");
 }
 
-void	ss(t_stack_node **a, t_stack_node *b, bool print)
+void	ss(t_stack_node **a, t_stack_node **b, bool print)
 {
 	swap(a);
 	swap(b);
@@ -75,6 +75,7 @@ void	ss(t_stack_node **a, t_stack_node *b, bool print)
 		// replace it with ft_printf!!!!
 		//ft_printf("ss\n");
 }
+/*
 //////////////////////////////////////////
 // FOR TESTING, DELETE IT
 
@@ -114,3 +115,5 @@ int main()
     ftt_lstiter(list);
     return (0);
 }
+
+*/
