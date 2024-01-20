@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:23:26 by mito              #+#    #+#             */
-/*   Updated: 2024/01/19 16:23:45 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/20 18:44:18 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 # include <stdbool.h>
 # include <limits.h>
 # include <stdio.h> // delete it if you don't need it! I put this for printf
-# include "../libft/libft.h"
-# include "../ft_printf/ft_printf.h"
+# include <stdlib.h> // for malloc?
+
+//# include "../libft/libft.h"
+//# include "../ft_printf/ft_printf.h"
 
 typedef struct s_stack_node
 {
@@ -64,7 +66,7 @@ void			init_nodes_a(t_stack_node *a, t_stack_node *b);
 
 // push.c
 void			pa(t_stack_node **a, t_stack_node **b, bool print);
-void			pb(t_stack_node **a, t_stack_node **b, bool print);
+void			pb(t_stack_node **b, t_stack_node **a, bool print);
 
 // swap.c
 void			sa(t_stack_node **a, bool print);
@@ -80,6 +82,10 @@ void			rr(t_stack_node **a, t_stack_node **b, bool print);
 void			rra(t_stack_node **a, bool print);
 void			rrb(t_stack_node **b, bool print);
 void			rrr(t_stack_node **a, t_stack_node **b, bool print);
+
+// handle_errors.c
+void free_errors(t_stack_node **a);
+void    free_stack(t_stack_node **stack);
 
 void	ftt_lstiter(t_stack_node *lst); // delete it
 #endif

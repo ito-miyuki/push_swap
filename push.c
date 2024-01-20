@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:53:59 by mito              #+#    #+#             */
-/*   Updated: 2024/01/19 16:20:26 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/20 17:46:27 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,38 @@
 static void	push(t_stack_node **dst, t_stack_node **src)
 {
 	t_stack_node	*push_node; //ここに一旦入れる
-
-	printf("dst nbr is at the beginning %d\n", (*dst)->nbr);
+	printf("-you are in push func\n");
+	printf("-dst nbr is at the beginning %d\n", (*dst)->nbr);
 	// if (*src == NULL)
 	// 	printf("\n\n\n*src is NULL\n\n\n");
 	// else
-		printf("src nbr is at the beginning %d\n", (*src)->nbr);
-	if (!*src) //例えばa or b のリストの先頭が何もない時
+		printf("-src nbr is at the beginning %d\n", (*src)->nbr);
+	if (*src == NULL) //(!*src) //srcがNULLなら。例えばa or b のリストの先頭が何もない時
 	{
-		printf("src is empty in push function\n");
+		printf("-src is empty in push function\n");
 		return ; //do nothing
 	}
-	push_node = *src; //srcを一旦ここに入れる（移動のため）
-	printf("push_node nbr is %d\n", push_node->nbr);
+	push_node = *src; //移動したいsrcをpush nodeに入れる
+	printf("-push_node nbr is %d\n", push_node->nbr);
 	*src = (*src)->next; //srcが次を指すようにする
 	if (*src) 
-		(*src)->prev = NULL; //srcのprevがNULLを指すことで、それが先頭になる（先頭だからNULLを指してないといけない）
+		(*src)->prev = NULL; //srcのprevがNULLを指すことで、それが新しい先頭になる（先頭だからNULLを指してないといけない）
 	push_node->prev = NULL; // push_node をdstの先頭として追加する際に、そのノードがリストの始点であることを示すため
-	if (!*dst)
+	if (*dst == NULL) //(!*dst) //dstがNULLなら
 	{
-		*dst = push_node; //もしdstが空なら、最初のnodeにする
-		printf("dst nbr is %d\n", (*dst)->nbr);
+		*dst = push_node; //もしdstが空なら、いま移動するものをdst先頭nodeにする
+		printf("-dst nbr is %d\n", (*dst)->nbr);
 		push_node->next = NULL; //次がNULLを指すようにする
 	}
-	else // もしdstが空じゃなかったら
+	else // もしdstが空じゃなかったら　つまりもう何回かpushしたならここに来るはず
 	{
-		printf("dst is not empty in push function\n");
-		push_node->next = *dst; //現在のdstの先頭に入れたいものをつなげる
+		printf("-dst has alreay some values (in push function)\n");
+		push_node->next = *dst; //いま移動するものの次を現在のdstの先頭につなげる
 		push_node->next->prev = push_node; //二個目になったdstのprevを新しく入ってきた先頭とつなげる
 		*dst = push_node; //dstを更新
-		printf("dst nbr is %d\n", (*dst)->nbr);
+		printf("-dst nbr is %d\n", (*dst)->nbr);
 	}
+	printf("-you exit push func\n");
 }
 
 void	pa(t_stack_node **a, t_stack_node **b, bool print)
@@ -56,9 +57,9 @@ void	pa(t_stack_node **a, t_stack_node **b, bool print)
 		printf("pa\n"); //replace it with ft_printf!!!!
 		//ft_printf("pa\n");
 }
-void	pb(t_stack_node **a, t_stack_node **b, bool print)
+void	pb(t_stack_node **b, t_stack_node **a, bool print)
 {
-	push(b, a);
+	push(b, a); // i wrote wrongly push(b, a)
 	if (!print)
 		printf("pb\n"); //replace it with ft_printf!!!!
 		//ft_printf("pb\n");

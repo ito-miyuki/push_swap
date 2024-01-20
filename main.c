@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:53:35 by mito              #+#    #+#             */
-/*   Updated: 2024/01/19 16:36:35 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/20 18:39:20 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,8 +193,6 @@ int main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 
-	// b->
-
 	if (argc == 1 || (argc == 2 && !argv[1][0])) //数字がなかったら
 		return (1);
 	// (validate(argv + 1) == false)
@@ -231,22 +229,21 @@ int main(int argc, char **argv)
 		}
 		else
 		{
-			// b = (t_stack_node *)malloc(sizeof(t_stack_node));
+			b = (t_stack_node *)malloc(sizeof(t_stack_node)); // this is needed but initializing each member might not be needed 
 			// b = new_stack_node();
 			// new_stack_node() {
-			// 	t_stack_node *new_node;
-			// 	new_node = (t_stack_node *)malloc(sizeof(t_stack_node));
-			// 	if (new_node != NULL) {
-			// 		new_node->next = NULL;
-			// 		new_node->prev = NULL;
-			// 		new_node->target_node = NULL;
-			// 		new_node->above_median = 0;
-			// 		new_node->cheapest = 0;
-			// 		new_node->index = 0;
-			// 		new_node->nbr = 0;						
-			// 	}
-			// 	return (new_node);
-			// }
+				//t_stack_node *new_node;
+				//new_node = (t_stack_node *)malloc(sizeof(t_stack_node));
+				//if (new_node != NULL) {
+					b->next = NULL;
+					b->prev = NULL;
+					b->target_node = NULL;
+					b->above_median = 0;
+					b->cheapest = 0;
+					b->index = 0;
+					b->nbr = 0;						
+				//}
+				//return (new_node);	
 			printf("-start sorting algo\n");
 			printf("-a: %p\n-b: %p\n", a, b); //この時点でbがもうNULLだ
 			sort_stacks(&a, &b);
@@ -256,7 +253,8 @@ int main(int argc, char **argv)
 		printf("-number were sorted already\n"); //delete it
 	printf("-sorted number\n");
 	ftt_lstiter(a); //delete this
-	// free
+	free_errors(&a);
+	// free_errors(b); if we will allocate memory for B
 	return (0);
 }
 

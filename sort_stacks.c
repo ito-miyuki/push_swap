@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 09:24:40 by mito              #+#    #+#             */
-/*   Updated: 2024/01/19 12:06:40 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/20 18:03:41 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,7 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b)
 	if (len_a-- > 3 && !stack_sorted(*a)) //スタック内を３つにするため
 	{
 		printf("-push the top node from a\n");
-		// printf("-a's value is %d\n", (*a)->nbr);
-		// printf("-b's value is %d\n", (*b)->nbr);
 		pb(b, a, false);
-		// printf("-a's value after pb is %d\n", (*a)->nbr);
-		// printf("-b's value after pb is %d\n", (*b)->nbr);
 	}
 	if (len_a-- > 3 && !stack_sorted(*a))
 	{
@@ -97,7 +93,7 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b)
 			printf("-*a is not NULL\n"); // delete it
 		if (*b != NULL) //(!(*b)) // delete it
 			printf("-*b is not NULL\n");	// delete it
-		init_nodes_a(*a, *b); //ここでbがヌルだった
+		init_nodes_a(*a, *b);
 		printf("-init_nodes_a was excuted\n");
 		move_a_to_b(a, b); 
 		printf("-move_a_to_b was excuted\n");

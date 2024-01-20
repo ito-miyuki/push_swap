@@ -9,6 +9,7 @@ SRCS =	init_a_to_b.c \
 			sort_three.c \
 			stack_init.c \
 			stack_utils.c \
+			handle_errors.c \
 			main.c
 
 OBJS = $(SRCS:.c=.o)

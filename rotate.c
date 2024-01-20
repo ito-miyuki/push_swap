@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:27:43 by mito              #+#    #+#             */
-/*   Updated: 2024/01/10 15:02:17 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/17 16:03:37 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include <stdio.h> // delete it!!
 
 //delete this functions
-t_stack_node	*find_last(t_stack_node *stack)
-{
-	if (!stack)
-		return (NULL);
-	while (stack->next)
-		stack = stack->next;
-	return (stack);
-}
+// t_stack_node	*find_last(t_stack_node *stack)
+// {
+// 	if (!stack)
+// 		return (NULL);
+// 	while (stack->next)
+// 		stack = stack->next;
+// 	return (stack);
+// }
 //////////////
 
 static void	rotate(t_stack_node **stack)
@@ -50,7 +50,7 @@ void	rb(t_stack_node **b, bool print)
 {
 	rotate(b);
 	if (!print)
-		printf("ra\n"); //replace it with ft_printf!!!!
+		printf("rb\n"); //replace it with ft_printf!!!!
 		// ft_printf("rb\n");
 }
 
@@ -63,6 +63,7 @@ void	rr(t_stack_node **a,t_stack_node **b, bool print)
 		// ft_printf("rr\n");
 }
 
+/*
 // for testing, delete it before submitting
 void	ftt_lstiter(t_stack_node *lst)
 {
@@ -80,18 +81,61 @@ int main()
 	t_stack_node    *lst;
     t_stack_node    first;
     t_stack_node    second;
+	t_stack_node	third;
+	t_stack_node	fourth;
+
 
     first.nbr = 1;
     second.nbr = 2;
-    second.next = NULL;
-    first.next = &second;
-    lst = &first;
+	third.nbr = 3;
+	fourth.nbr = 4;
 
+	first.prev = NULL;
+    first.next = &second;
+    second.prev = &first;
+    second.next = &third;
+    third.prev = &second;
+	third.next = &fourth;
+	fourth.prev = &third;
+    fourth.next = NULL;
+	
+	lst = &first;
+
+	
+	t_stack_node    *lst2;
+    t_stack_node    first2;
+    t_stack_node    second2;
+	t_stack_node	third2;
+	t_stack_node	fourth2;
+
+    first2.nbr = 1;
+    second2.nbr = 2;
+	third2.nbr = 3;
+	fourth2.nbr = 4;
+
+	first2.prev = NULL;
+    first2.next = &second2;
+    second2.prev = &first2;
+    second2.next = &third2;
+    third2.prev = &second2;
+	third2.next = &fourth2;
+	fourth2.prev = &third2;
+    fourth2.next = NULL;
+	
+	lst2 = &first2;
+	
     printf("↓before rotate↓\n");
+	printf("list1\n");
     ftt_lstiter(lst);
-	ra(&lst, false);
-    printf("↓after rotate↓\n");
+	printf("list2\n");
+	ftt_lstiter(lst2);
+	printf("↓after rotate↓\n");
+	rr(&lst, &lst2, false);
+	printf("list1\n");
     ftt_lstiter(lst);
+	printf("list2\n");
+	ftt_lstiter(lst2);
     return (0);
 }
 
+*/
