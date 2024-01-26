@@ -6,13 +6,12 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:47:41 by mito              #+#    #+#             */
-/*   Updated: 2024/01/17 16:04:44 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/25 11:48:37 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h> // delete it
-
+/*
 static void	swap(t_stack_node **head)
 {
 	t_stack_node *first;
@@ -35,7 +34,8 @@ static void	swap(t_stack_node **head)
 	*head = second;
 }
 
-/*
+*/
+
 static void	swap(t_stack_node **head)
 {
 	if (!*head || !(*head)->next) //リストの先頭がNULLか次がない場合
@@ -48,72 +48,23 @@ static void	swap(t_stack_node **head)
 	(*head)->next = (*head)->prev; // 新しい先頭ノードの next ポインタを旧先頭ノードに設定
 	(*head)->prev = NULL; // 新しい先頭ノードの prevを NULL に設定
 }
-*/
 
-void	sa(t_stack_node **a, bool print)
+
+void	sa(t_stack_node **a)
 {
 	swap(a);
-	if (!print)
-		printf("sa\n"); //replace it with ft_printf!!!!
-        //ft_printf("sa\n");
+	ft_printf("sa\n");
 }
 
-void	sb(t_stack_node **b, bool print)
+void	sb(t_stack_node **b)
 {
 	swap(b);
-	if(!print)
-		printf("sb\n"); // replace it with ft_printf!!!!
-		//ft_printf("sb\n");
+	ft_printf("sb\n");
 }
 
-void	ss(t_stack_node **a, t_stack_node **b, bool print)
+void	ss(t_stack_node **a, t_stack_node **b)
 {
 	swap(a);
 	swap(b);
-	if (!print)
-		printf("ss\n");
-		// replace it with ft_printf!!!!
-		//ft_printf("ss\n");
+	ft_printf("ss\n");
 }
-/*
-//////////////////////////////////////////
-// FOR TESTING, DELETE IT
-
-void	ftt_lstiter(t_stack_node *lst)
-{
-	//if (!lst || !f)
-	//	return ;
-	while (lst)
-	{
-		//f(lst->target_node);
-		printf("%d\n", lst->nbr);
-		lst = lst->next;
-	}
-}
-
-int main()
-{
-	t_stack_node *list;
-	t_stack_node first;
-	t_stack_node second;
-	t_stack_node third;
-
-	first.nbr = 1;
-	second.nbr = 2;
-	third.nbr = 3;
-
-	third.next = NULL;
-	first.next = &second;
-	second.next = &third;
-
-	list = &first;
-
-	printf("↓BEFORE↓\n");
-    ftt_lstiter(list);
-    printf("↓AFTER↓\n");
-	sa(&list, true);
-    ftt_lstiter(list);
-    return (0);
-}
-
-*/

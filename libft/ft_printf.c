@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_three.c                                       :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 08:22:48 by mito              #+#    #+#             */
-/*   Updated: 2024/01/25 11:49:08 by mito             ###   ########.fr       */
+/*   Created: 2023/11/15 13:45:33 by mito              #+#    #+#             */
+/*   Updated: 2024/01/24 10:56:18 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	sort_three(t_stack_node **a)
+int	ft_printf(const char *str, ...)
 {
-	t_stack_node	*biggest_node;
+	va_list	ap;
+	int		count;
 
-	biggest_node = find_max(*a);
-	// 一番でかいやつを一番下にもって行くための処理
-	if (biggest_node == *a)
-		ra(a);
-	else if ((*a)->next == biggest_node)
-		rra(a);
-	if ((*a)->nbr > (*a)->next->nbr) //ra後のリストで、一番目が二番目より大きいならsa
-		sa(a); 
+	va_start(ap, str);
+	count = 0;
+	while (*str != '\0')
+	{
+		if (*str == '%')
+		{
+			count += print_format(*(++str), ap);
+			if (count < 0)
+				return (-1);
+		}
+		else
+		{
+			count += write(1, str, 1);
+			if (count < 0)
+				return (-1);
+		}
+		str++;
+	}
+	va_end(ap);
+	return (count);
 }

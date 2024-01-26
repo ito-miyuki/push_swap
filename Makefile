@@ -1,8 +1,12 @@
 NAME = push_swap
 
+LIBFT_DIR = ./libft
+LIBFT = ./libft/libft.a
+
 SRCS =	init_a_to_b.c \
 			init_b_to_a.c \
-			push.c rotate.c \
+			push.c \
+			rotate.c \
 			rev_rotate.c \
 			swap.c \
 			sort_stacks.c \
@@ -10,13 +14,16 @@ SRCS =	init_a_to_b.c \
 			stack_init.c \
 			stack_utils.c \
 			handle_errors.c \
-			main.c
+			main.c \
+#			split.c \
+			
 
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
-CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror
+CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror -I./libft
+# -g -fsanitize=address
 
 AR = ar rcs
 
@@ -24,20 +31,25 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-		$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-#		$(AR) $(NAME) $(OBJS)
+$(NAME): $(LIBFT) $(OBJS) 
+		$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -o $(NAME)
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
 
 .o: .c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-		$(RM) $(OBJS)
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(RM) $(OBJS)
 
-fclean:
-		$(RM) $(OBJS)
-		$(RM) $(NAME)
+fclean: clean
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(RM) $(NAME)
+	$(RM) $(LIBFT)
 
 re: fclean all
 
 .PHONY: all clean fclean re
+

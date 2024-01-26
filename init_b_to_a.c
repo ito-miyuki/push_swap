@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:41:48 by mito              #+#    #+#             */
-/*   Updated: 2024/01/17 14:57:44 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/24 14:10:35 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void set_target_b(t_stack_node *a, t_stack_node *b) // bのターゲッ�
     }
 }
 
-void    init_nodes_b(t_stack_node *a, t_stack_node *b) //ここって何？なんのためにあるの？
+void    init_nodes_b(t_stack_node *a, t_stack_node *b) //BからAに持ってい準備始める
 {
     current_index(a);
     current_index(b);

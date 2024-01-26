@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:23:26 by mito              #+#    #+#             */
-/*   Updated: 2024/01/20 18:44:18 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/26 17:09:19 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 # include <stdio.h> // delete it if you don't need it! I put this for printf
 # include <stdlib.h> // for malloc?
 
-//# include "../libft/libft.h"
-//# include "../ft_printf/ft_printf.h"
+# include "libft.h"
 
 typedef struct s_stack_node
 {
@@ -65,27 +64,30 @@ void			set_cheapest(t_stack_node *stack);
 void			init_nodes_a(t_stack_node *a, t_stack_node *b);
 
 // push.c
-void			pa(t_stack_node **a, t_stack_node **b, bool print);
-void			pb(t_stack_node **b, t_stack_node **a, bool print);
+void			pa(t_stack_node **a, t_stack_node **b);
+void			pb(t_stack_node **b, t_stack_node **a);
 
 // swap.c
-void			sa(t_stack_node **a, bool print);
-void			sb(t_stack_node **b, bool print);
-void			ss(t_stack_node **a, t_stack_node **b, bool print);
+void			sa(t_stack_node **a);
+void			sb(t_stack_node **b);
+void			ss(t_stack_node **a, t_stack_node **b);
 
 // rotate.c
-void			ra(t_stack_node **a, bool print);
-void			rb(t_stack_node **b, bool print);
-void			rr(t_stack_node **a, t_stack_node **b, bool print);
+void			ra(t_stack_node **a);
+void			rb(t_stack_node **b);
+void			rr(t_stack_node **a, t_stack_node **b);
 
 // rev_rotate.c
-void			rra(t_stack_node **a, bool print);
-void			rrb(t_stack_node **b, bool print);
-void			rrr(t_stack_node **a, t_stack_node **b, bool print);
+void			rra(t_stack_node **a);
+void			rrb(t_stack_node **b);
+void			rrr(t_stack_node **a, t_stack_node **b);
 
 // handle_errors.c
-void free_errors(t_stack_node **a);
-void    free_stack(t_stack_node **stack);
+int				error_syntax(char *str_n);
+int				error_duplicate(t_stack_node *a, int n);
+void 			free_errors(t_stack_node **a);
+void    		free_stack(t_stack_node **stack);
 
-void	ftt_lstiter(t_stack_node *lst); // delete it
+//delete this function
+void			ftt_lstiter(t_stack_node *lst); // delete it
 #endif

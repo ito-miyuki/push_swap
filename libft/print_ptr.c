@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_three.c                                       :+:      :+:    :+:   */
+/*   print_ptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 08:22:48 by mito              #+#    #+#             */
-/*   Updated: 2024/01/25 11:49:08 by mito             ###   ########.fr       */
+/*   Created: 2023/11/22 10:04:36 by mito              #+#    #+#             */
+/*   Updated: 2024/01/24 10:56:51 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	sort_three(t_stack_node **a)
+int	print_ptr(unsigned long n)
 {
-	t_stack_node	*biggest_node;
+	int	count;
 
-	biggest_node = find_max(*a);
-	// 一番でかいやつを一番下にもって行くための処理
-	if (biggest_node == *a)
-		ra(a);
-	else if ((*a)->next == biggest_node)
-		rra(a);
-	if ((*a)->nbr > (*a)->next->nbr) //ra後のリストで、一番目が二番目より大きいならsa
-		sa(a); 
+	count = 0;
+	count += write (1, "0x", 2);
+	if (count < 0)
+		return (-1);
+	if (n == 0)
+	{
+		count += write (1, "0", 1);
+		if (count < 0)
+			return (-1);
+		return (count);
+	}
+	count += print_ptraddress(n);
+	if (count < 0)
+		return (-1);
+	return (count);
 }

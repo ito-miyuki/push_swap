@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_three.c                                       :+:      :+:    :+:   */
+/*   print_digit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 08:22:48 by mito              #+#    #+#             */
-/*   Updated: 2024/01/25 11:49:08 by mito             ###   ########.fr       */
+/*   Created: 2023/11/21 15:14:17 by mito              #+#    #+#             */
+/*   Updated: 2024/01/24 10:56:40 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	sort_three(t_stack_node **a)
+int	print_digit(long n, int base)
 {
-	t_stack_node	*biggest_node;
+	int		count;
+	char	*symbols;
 
-	biggest_node = find_max(*a);
-	// 一番でかいやつを一番下にもって行くための処理
-	if (biggest_node == *a)
-		ra(a);
-	else if ((*a)->next == biggest_node)
-		rra(a);
-	if ((*a)->nbr > (*a)->next->nbr) //ra後のリストで、一番目が二番目より大きいならsa
-		sa(a); 
+	symbols = "0123456789abcdef";
+	if (n < 0)
+	{
+		if (write(1, "-", 1) < 0)
+			return (-1);
+		return (print_digit(-n, base) + 1);
+	}
+	else if (n < base)
+	{
+		return (print_char(symbols[n]));
+	}
+	else
+	{
+		count = print_digit(n / base, base);
+		if (count < 0)
+			return (-1);
+		return (count + print_digit(n % base, base));
+	}
 }

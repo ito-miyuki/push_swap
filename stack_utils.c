@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:11:18 by mito              #+#    #+#             */
-/*   Updated: 2024/01/18 11:51:36 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/22 19:03:31 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ int	stack_len(t_stack_node *stack)
 	return (count);
 }
 
+t_stack_node	*find_last(t_stack_node *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
+}
+
 bool	stack_sorted(t_stack_node *stack)
 {
 	if (!stack)
@@ -40,24 +49,15 @@ bool	stack_sorted(t_stack_node *stack)
 	return (true);
 }
 
-t_stack_node	*find_last(t_stack_node *stack)
-{
-	if (!stack)
-		return (NULL);
-	while (stack->next)
-		stack = stack->next;
-	return (stack);
-}
-
 t_stack_node	*find_min(t_stack_node *stack)
 {
 	long	min_num;
 	t_stack_node *min_node;
 
-	min_num = LONG_MAX;
 	if (!stack)
 		return (NULL);
-	while (stack->next)
+	min_num = LONG_MAX;
+	while (stack)
 	{
 		if (stack->nbr < min_num)
 		{
@@ -87,80 +87,3 @@ t_stack_node	*find_max(t_stack_node *stack)
 	}
 	return (max_node);
 }
-
-/*
- #include <stdio.h>
-
-// // FOR TESTING, DELETE IT
-void	ftt_lstiter(t_stack_node *lst)
-{
-	//if (!lst || !f)
-	//	return ;
-	while (lst)
-	{
-		//f(lst->target_node);
-		printf("%d\n", lst->nbr);
-		lst = lst->next;
-	}
-}
-
-int main()
-{
-	t_stack_node    *lst;
-    t_stack_node    first;
-    t_stack_node    second;
-	t_stack_node	third;
-	t_stack_node	fourth;
-
-    first.nbr = 9;
-    second.nbr = 4;
-	third.nbr = 5;
-	fourth.nbr = 6;
-
-	first.prev = NULL;
-    first.next = &second;
-    second.prev = &first;
-    second.next = &third;
-    third.prev = &second;
-	third.next = &fourth;
-	fourth.prev = &third;
-    fourth.next = NULL;
-
-	lst = &first;
-	
-//FIND_MAX/LAST TEST
-t_stack_node	*max;
-max = find_max(lst);
-printf("↓list↓\n");
-ftt_lstiter(lst);
-printf("↓Max node↓\n");
-printf("%d\n", max->nbr);
-return (0);
-
-// //FIND_MIN TEST
-// t_stack_node	*min;
-// min = find_min(lst);
-// printf("↓list↓\n");
-// ftt_lstiter(lst);
-// printf("↓Min node↓\n");
-// printf("%d\n", min->nbr);
-// return (0);
-
-// 	// STACK_SORTED TEST
-// if (stack_sorted(lst) == false)
-// 	printf("False");
-// else if (stack_sorted(lst) == true)
-// 	printf("True");
-
-// 	//STACK_LEN TEST
-// 	t_stack_node *list2;
-// 	list2 = NULL;
-	
-// 	int length = stack_len(lst);
-// 	int length2 = stack_len(list2);
-	
-// 	printf("%d\n", length2);
-// 
-//
-}
-*/
