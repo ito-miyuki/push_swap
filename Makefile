@@ -14,15 +14,13 @@ SRCS =	init_a_to_b.c \
 			stack_init.c \
 			stack_utils.c \
 			handle_errors.c \
-			main.c \
-#			split.c \
-			
+			main.c		
 
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
-CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror -I./libft
+CFLAGS = -Wall -Wextra -Werror -I./libft
 # -g -fsanitize=address
 
 AR = ar rcs

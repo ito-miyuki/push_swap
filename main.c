@@ -6,13 +6,13 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:53:35 by mito              #+#    #+#             */
-/*   Updated: 2024/01/26 17:09:47 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/29 14:13:46 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//delete this ftt_lstiter function
+// // FOR TESTING, ftt_lstiter
 void	ftt_lstiter(t_stack_node *lst)
 {
 	while (lst)
@@ -22,22 +22,20 @@ void	ftt_lstiter(t_stack_node *lst)
 	}
 }
 
-int main(int argc, char **argv)
-{	
-
-	t_stack_node	*a; 
+int	main(int argc, char **argv)
+{
+	t_stack_node	*a;
 	t_stack_node	*b;
 
 	a = NULL;
 	b = NULL;
-
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
+	if (argc == 1)
 		return (1);
-	else if (argc == 2)
-		init_stack_a(&a, ft_split(argv[1], ' '));
-	if (argc > 2)
-		init_stack_a(&a, argv + 1); //a.outをスキップする
-	if (!stack_sorted(a)) //もうすでに順番通りか確認
+	if (argc == 2)
+		init_stack_a(&a, ft_split(argv[1], ' '), 1);
+	else
+		init_stack_a(&a, argv + 1, 0);
+	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
 			sa(&a);
@@ -46,8 +44,7 @@ int main(int argc, char **argv)
 		else
 			sort_stacks(&a, &b);
 	}
-	//ft_printf("**this is the result**\n");
-	//ftt_lstiter(a);
+		//ftt_lstiter(a);
 	free_stack(&a);
 	return (0);
 }

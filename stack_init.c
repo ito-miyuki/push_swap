@@ -6,13 +6,13 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 16:14:24 by mito              #+#    #+#             */
-/*   Updated: 2024/01/26 11:53:24 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/29 15:26:35 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static long ft_atol(const char *str)
+static long	ft_atol(const char *str)
 {
 	long long	res;
 	int			negative;
@@ -32,8 +32,9 @@ static long ft_atol(const char *str)
 		res = res * 10 + (*str - '0');
 		str++;
 	}
-	return ((int)res * negative);
+	return (res * negative);
 }
+
 static void	append_node(t_stack_node **stack, int n)
 {
 	t_stack_node	*node;
@@ -46,12 +47,12 @@ static void	append_node(t_stack_node **stack, int n)
 		return ;
 	node->next = NULL;
 	node->nbr = n;
-	if (!(*stack)) // if(*stack == NULL) stackはa、aはさっきNULLにしたよね！だから最初はここに来る
+	if (!(*stack))
 	{
 		*stack = node;
 		node->prev = NULL;
 	}
-	else //２回目のループ以降、aはもうNULLじゃないからここに来る
+	else
 	{
 		last_node = find_last(*stack);
 		last_node->next = node;
@@ -59,23 +60,31 @@ static void	append_node(t_stack_node **stack, int n)
 	}
 }
 
-void	init_stack_a(t_stack_node **a, char **num_input)
+void	init_stack_a(t_stack_node **a, char **argv, int sp)
 {
 	long	n;
 	int		i;
 
 	i = 0;
-	while (num_input[i])
+	if (!argv[i])
+		free_errors(a, argv, sp);
+	while (argv[i])
 	{
-		n = ft_atol(num_input[i]);
+		if (error_syntax(argv[i]))
+			free_errors(a, argv, sp);
+		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			free(num_input);
-		append_node(a, (int)n); // if there's no error, 
+			free_errors(a, argv, sp);
+		if (error_duplicate(*a, (int)n))
+			free_errors(a, argv, sp);
+		append_node(a, (int)n);
 		i++;
 	}
+	if (sp)
+		free_sp_array(argv);
 }
 
-t_stack_node *get_cheapest(t_stack_node *stack)
+t_stack_node	*get_cheapest(t_stack_node *stack)
 {
 	if (!stack)
 		return (NULL);
@@ -88,10 +97,10 @@ t_stack_node *get_cheapest(t_stack_node *stack)
 	return (NULL);
 }
 
-void	prep_for_push(t_stack_node **stack, t_stack_node *top_node, char stack_name)
+void	prep_for_push(t_stack_node **stack, t_stack_node *top_node,
+		char stack_name)
 {
-	//移動するやつを上に持っていきたい
-	while (*stack != top_node) //今は上にないなら（もう上にあるなら必要ないから）
+	while (*stack != top_node)
 	{
 		if (stack_name == 'a')
 		{

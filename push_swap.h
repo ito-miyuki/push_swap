@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:23:26 by mito              #+#    #+#             */
-/*   Updated: 2024/01/26 17:09:19 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/29 13:18:38 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdbool.h>
 # include <limits.h>
+# include <unistd.h>
 # include <stdio.h> // delete it if you don't need it! I put this for printf
 # include <stdlib.h> // for malloc?
 
@@ -36,12 +37,11 @@ typedef struct s_stack_node
 //sort_three.c
 void				sort_three(t_stack_node **a);
 
-void			init_stack_a(t_stack_node **a, char **argv);
 t_stack_node	*find_last(t_stack_node *stack);
 void			set_cheapest(t_stack_node *stack);
 
 //stack_init.c
-void			init_stack_a(t_stack_node **a, char **argv);
+void			init_stack_a(t_stack_node **a, char **argv, int sp);
 t_stack_node	*get_cheapest(t_stack_node *stack);
 void			prep_for_push(t_stack_node **stack, t_stack_node *top_node, char stack_name);
 
@@ -85,7 +85,8 @@ void			rrr(t_stack_node **a, t_stack_node **b);
 // handle_errors.c
 int				error_syntax(char *str_n);
 int				error_duplicate(t_stack_node *a, int n);
-void 			free_errors(t_stack_node **a);
+void    		free_errors(t_stack_node **a, char **array, int sp);
+void			free_sp_array(char **array);
 void    		free_stack(t_stack_node **stack);
 
 //delete this function
