@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:47:41 by mito              #+#    #+#             */
-/*   Updated: 2024/01/29 14:12:29 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/30 15:46:13 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ static void	swap(t_stack_node **head)
 
 	if (!*head || !(*head)->next)
 		return ;
-	first = *head; //firstがリストの最初を指す
-	second = (*head)->next; //secondがその次をさす
-	// 1, 2, 3というリストがあったとして、1がfirst、2がsecond
-	first->next = second->next; //1の次が3になるようにする
-	first->prev = second; //1の前が2になるようにする
-	second->prev = NULL; //２の前がNULL これで２が先頭になる
-	second->next = first; //２の次が１になるようにする
-	if (first->next) //もし１の次がヌルじゃなかったら
+	first = *head;
+	second = (*head)->next;
+	first->next = second->next;
+	first->prev = second;
+	second->prev = NULL;
+	second->next = first;
+	if (first->next)
 		first->next->prev = first;
 	*head = second;
 }

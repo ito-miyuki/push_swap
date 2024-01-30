@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:11:18 by mito              #+#    #+#             */
-/*   Updated: 2024/01/29 13:58:27 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/30 15:17:05 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	stack_len(t_stack_node *stack)
 {
 	int	count;
+
 	if (!stack)
 		return (0);
 	count = 0;
@@ -67,6 +68,7 @@ t_stack_node	*find_min(t_stack_node *stack)
 	}
 	return (min_node);
 }
+
 t_stack_node	*find_max(t_stack_node *stack)
 {
 	long			max_num;

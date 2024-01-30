@@ -14,6 +14,7 @@ SRCS =	init_a_to_b.c \
 			stack_init.c \
 			stack_utils.c \
 			handle_errors.c \
+			min_on_top.c \
 			main.c		
 
 OBJS = $(SRCS:.c=.o)
@@ -21,7 +22,6 @@ OBJS = $(SRCS:.c=.o)
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -I./libft
-# -g -fsanitize=address
 
 AR = ar rcs
 

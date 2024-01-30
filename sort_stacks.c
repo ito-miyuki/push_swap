@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 09:24:40 by mito              #+#    #+#             */
-/*   Updated: 2024/01/29 15:25:28 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/30 15:18:25 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static void	rev_rotate_both(t_stack_node **a,
 
 static void	move_a_to_b(t_stack_node **a, t_stack_node **b)
 {
-	t_stack_node	*cheapest_node; //prepしてからrotate bothを行わないのはなぜ？効率的じゃなくない？
+	t_stack_node	*cheapest_node;
+
 	cheapest_node = get_cheapest(*a);
 	if (cheapest_node->above_median && cheapest_node->target_node->above_median)
 		rotate_both(a, b, cheapest_node);
@@ -48,17 +49,6 @@ static void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 {
 	prep_for_push(a, (*b)->target_node, 'a');
 	pa(a, b);
-}
-
-static void	min_on_top(t_stack_node **a)
-{
-	while ((*a)->nbr != find_min(*a)->nbr)
-	{
-		if (find_min(*a)->above_median)
-			ra(a);
-		else
-			rra(a);
-	}
 }
 
 void	sort_stacks(t_stack_node **a, t_stack_node **b)

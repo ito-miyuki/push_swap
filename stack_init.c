@@ -6,7 +6,7 @@
 /*   By: mito <mito@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 16:14:24 by mito              #+#    #+#             */
-/*   Updated: 2024/01/29 15:26:35 by mito             ###   ########.fr       */
+/*   Updated: 2024/01/30 15:28:58 by mito             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static long	ft_atol(const char *str)
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
-			negative *= -1; // negative = -1 にしてもいい？
+			negative *= -1;
 		str++;
 	}
-	while (*str >= 48 && *str <= 57) //ここでft_digit使おうか？
+	while (*str >= 48 && *str <= 57)
 	{
 		res = res * 10 + (*str - '0');
 		str++;
