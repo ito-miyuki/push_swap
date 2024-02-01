@@ -23,8 +23,6 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -I./libft
 
-AR = ar rcs
-
 RM = rm -f
 
 all: $(NAME)
